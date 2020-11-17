@@ -18,28 +18,27 @@ $expansion0 = $games["Tanto Cuore"];
 </head>
 <body>
 
-    <form action="results.php" method="post">
-        <div class="d-flex flex-column justify-content-center container-xl">
-            <div class="d-flex justify-content-between col-2 offset-10">
-                <label for="actions"> Require +2 Actions</label>
-                <input type="checkbox" id="actions" name="requireAction">
-            </div>
-            <div class="d-flex justify-content-between col-2 offset-10">
-                <label for="drawer"> Require Drawer</label>
-                <input type="checkbox" id="drawer" name="requireDrawer">
-            </div>
-            <div class="d-flex justify-content-between col-2 offset-10">
-                <label for="buy"> Require Buy</label>
-                <input type="checkbox" id="buy" name="requireBuy">
-            </div>
-            <div class="d-flex justify-content-between col-2 offset-10">
-                <label for="allowAttacks"> Allow Attacks</label>
-                <input type="checkbox" id="allowAttacks" name="allowAttacks">
-            </div>
-            <div id="attackRequire">
-                <label for="requireAttack"> Require Attack</label>
-                <input type="checkbox" id="requireAttack" name="requireAttack">
-            </div>
+    <form action="results.php" method="post" class="d-flex flex-column justify-content-center container-xl">
+
+        <div class="d-flex justify-content-between col-2 offset-10">
+            <label for="actions"> Require +2 Actions</label>
+            <input type="checkbox" id="actions" name="requireAction">
+        </div>
+        <div class="d-flex justify-content-between col-2 offset-10">
+            <label for="drawer"> Require Drawer</label>
+            <input type="checkbox" id="drawer" name="requireDrawer">
+        </div>
+        <div class="d-flex justify-content-between col-2 offset-10">
+            <label for="buy"> Require Buy</label>
+            <input type="checkbox" id="buy" name="requireBuy">
+        </div>
+        <div class="d-flex justify-content-between col-2 offset-10">
+            <label for="allowAttacks"> Allow Attacks</label>
+            <input type="checkbox" id="allowAttacks" name="allowAttacks">
+        </div>
+        <div id="attackRequire">
+            <label for="requireAttack"> Require Attack</label>
+            <input type="checkbox" id="requireAttack" name="requireAttack">
         </div>
 
         <input type="submit" value="submit" class="col-2 offset-10">
@@ -56,10 +55,6 @@ $expansion0 = $games["Tanto Cuore"];
                 if ($expansion0[$i * 7 + $j])
                 {
                     echo "<td>{$expansion0[$i * 7 + $j]["name"]}</td>";
-                    if (§i > 0)
-                    {
-                            echo "<td><"
-                    }
                 }
             }
             echo "</tr>";
