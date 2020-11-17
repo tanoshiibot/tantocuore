@@ -1,0 +1,144 @@
+{
+    "Tanto Cuore" : [{
+        "name": "1 amour",
+        "type": "Amour",
+        "love": 1,
+        "cost": 1
+    },
+    {
+        "name": "2 amours",
+        "type": "Amour",
+        "love": 2,
+        "cost": 4
+    },
+    {
+        "name": "3 amours",
+        "type": "Amour",
+        "love": 3,
+        "cost": 7
+    },
+    {
+        "name": "Colette Framboise",
+        "type": "Femme de chambre en chef",
+        "vp": 1,
+        "cost": 3
+    },
+    {
+        "name": "Marianne Soleil",
+        "type": "Servante en chef",
+        "vp": 6,
+        "cost": 9
+    },
+    {
+        "name": "Maladie",
+        "type": "Événement",
+        "vp": 0,
+        "cost": 4
+    },
+    {
+        "name": "Mauvaise habitude",
+        "type": "Événement",
+        "vp": -1,
+        "cost": 4
+    },
+    {
+        "name": "Azure Crescent",
+        "buy": 1,
+        "vp": 1,
+        "cost": 2,
+        "groups": ["Crescent"]
+    },
+    {
+        "name": "Rouge Crescent",
+        "love": 1,
+        "vp": 1,
+        "cost": 2,
+        "groups": ["Crescent"]
+    },
+    {
+        "name": "Viola Crescent",
+        "draw": 1,
+        "vp": 1,
+        "cost": 2,
+        "groups": ["Crescent"]
+    },
+    {
+        "name": "Claire Saint-Juste",
+        "service": 1,
+        "cost": 3,
+        "groups": ["heal"]
+    },
+    {
+        "name": "Eliza Rosewater",
+        "love": 2,
+        "cost": 3
+    },
+    {
+        "name": "Kagari Ichinomiya",
+        "service": 2,
+        "cost": 3
+    },
+    {
+        "name": "Safran Virginie",
+        "love": 2,
+        "cost": 3
+    },
+    {
+        "name": "Esquine Forêt",
+        "draw": 2,
+        "cost": 4,
+        "groups": ["cantrip", "+2 services"]
+    },
+    {
+        "name": "Geneviève Daubigny",
+        "draw": 1,
+        "service": 1,
+        "love": 1,
+        "cost": 4
+    },
+    {
+        "name" : "Moine Lefèvre",
+        "draw": 2,
+        "buy": 2,
+        "cost": 4
+    },
+    {
+        "name": "Natsumi Fujikawa",
+        "draw": 1,
+        "service": 2,
+        "cost": 5,
+        "groups": ["attack"]
+    },
+    {
+        "name": "Nena Wilder",
+        "love": 1,
+        "cost": 5,
+        "groups": ["attack"]
+    },
+    {
+        "name": "Sainsbury Lockwood",
+        "cost": 5
+    },
+    {
+        "name": "Tenalys Trent",
+        "love": 3,
+        "buy": 1,
+        "cost": 5
+    },
+    {
+        "name": "Ophelia Grant",
+        "draw": 1,
+        "service": 1,
+        "love": 1,
+        "buy": 1,
+        "cost": 6
+    },
+    {
+        "name": "Anise Greenaway",
+        "draw": 3,
+        "buy": 1,
+        "vp": 3,
+        "cost": 7
+    }],
+    "Tanto Cuore : Expanding the House": []
+}
