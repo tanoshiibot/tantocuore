@@ -36,7 +36,7 @@ $expansion0 = $games["Tanto Cuore"];
             <label for="allowAttacks"> Allow Attacks</label>
             <input type="checkbox" id="allowAttacks" name="allowAttacks">
         </div>
-        <div id="attackRequire">
+        <div class="d-flex justify-content-between col-2 offset-10">
             <label for="requireAttack"> Require Attack</label>
             <input type="checkbox" id="requireAttack" name="requireAttack">
         </div>
@@ -47,13 +47,10 @@ $expansion0 = $games["Tanto Cuore"];
     <p>Liste des cartes :</p>
     <table>
         <?php
-        for ($i = 0; $i < (count($expansion0) / 7); $i++)
-        {
+        for ($i = 0; $i < (count($expansion0) / 7); $i++) {
             echo "<tr>";
-            for ($j = 0; $j < 7; $j++)
-            {
-                if ($expansion0[$i * 7 + $j])
-                {
+            for ($j = 0; $j < 7; $j++) {
+                if (isset($expansion0[$i * 7 + $j])) {
                     echo "<td>{$expansion0[$i * 7 + $j]["name"]}</td>";
                 }
             }
