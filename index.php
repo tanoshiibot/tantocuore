@@ -2,8 +2,7 @@
 
 $json = file_get_contents("cards.json");
 $games = json_decode($json, true);
-
-
+$expansion0 = $games["Tanto Cuore"];
 
 ?>
 
@@ -19,41 +18,49 @@ $games = json_decode($json, true);
 </head>
 <body>
 
-    <form action="results.php" method="post" class="d-flex flex-column justify-content-center container-xl">
-        <div class="d-flex justify-content-between col-2 offset-10">
-            <label for="actions"> Require +2 Actions</label>
-            <input type="checkbox" id="actions" name="requireAction">
-        </div>
-        <div class="d-flex justify-content-between col-2 offset-10">
-            <label for="drawer"> Require Drawer</label>
-            <input type="checkbox" id="drawer" name="requireDrawer">
-        </div>
-        <div class="d-flex justify-content-between col-2 offset-10">
-            <label for="buy"> Require Buy</label>
-            <input type="checkbox" id="buy" name="requireBuy">
-        </div>
-        <div class="d-flex justify-content-between col-2 offset-10">
-            <label for="allowAttacks"> Allow Attacks</label>
-            <input type="checkbox" id="allowAttacks" name="allowAttacks">
-        </div>
-        <div id="attackRequire">
-            <label for="requireAttack"> Require Attack</label>
-            <input type="checkbox" id="requireAttack" name="requireAttack">
+    <form action="results.php" method="post">
+        <div class="d-flex flex-column justify-content-center container-xl">
+            <div class="d-flex justify-content-between col-2 offset-10">
+                <label for="actions"> Require +2 Actions</label>
+                <input type="checkbox" id="actions" name="requireAction">
+            </div>
+            <div class="d-flex justify-content-between col-2 offset-10">
+                <label for="drawer"> Require Drawer</label>
+                <input type="checkbox" id="drawer" name="requireDrawer">
+            </div>
+            <div class="d-flex justify-content-between col-2 offset-10">
+                <label for="buy"> Require Buy</label>
+                <input type="checkbox" id="buy" name="requireBuy">
+            </div>
+            <div class="d-flex justify-content-between col-2 offset-10">
+                <label for="allowAttacks"> Allow Attacks</label>
+                <input type="checkbox" id="allowAttacks" name="allowAttacks">
+            </div>
+            <div id="attackRequire">
+                <label for="requireAttack"> Require Attack</label>
+                <input type="checkbox" id="requireAttack" name="requireAttack">
+            </div>
         </div>
 
         <input type="submit" value="submit" class="col-2 offset-10">
     </form>
 
+    <p>Liste des cartes :</p>
     <table>
         <?php
-        echo "<p>Liste des cartes :</p>";
-
-        for ($i = 0; $i < (count($games["Tanto Cuore"]) / 6); $i++)
+        for ($i = 0; $i < (count($expansion0) / 7); $i++)
         {
             echo "<tr>";
-            for ($j = 0; $j < 6; $j++)
+            for ($j = 0; $j < 7; $j++)
             {
-                echo "<td>{$games["Tanto Cuore"][$i * 6 + $j]["name"]}</td>";
+                if ($expansion0[$i * 7 + $j])
+                {
+                    echo "<td>{$expansion0[$i * 7 + $j]["name"]}</td>";
+                    if (§i > 0)
+                    {
+                            echo "<td><"
+                    }
+                }
             }
             echo "</tr>";
         }
