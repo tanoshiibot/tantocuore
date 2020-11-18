@@ -32,7 +32,6 @@
     {
         "name": "Maladie",
         "type": "Événement",
-        "vp": 0,
         "cost": 4
     },
     {
