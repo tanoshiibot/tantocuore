@@ -60,10 +60,12 @@ function takeWaitress($deck) {
     return array_filter($deck, "lookType");
 }
 
-function removeBanned($cards, $condition) {
+function removeBanned($conditions, $cards) {
     $deck = [];
     foreach ($cards as $card) {
-        !in_array($condition, $card["groups"]) ? array_push($deck, $card) : false ;
+        foreach ($conditions as $condition) {
+            !in_array($condition, $card["groups"]) ? array_push($deck, $card) : false ;
+        }
     }
     return $deck;
 }
@@ -127,7 +129,7 @@ function addRandomCards($cards, $deck) {
         $activeDeck = addExpansions($expansions, $activeExpansions);
         $activeDeck = addDefault($activeDeck, $defaultCard);
         $activeDeck = takeWaitress($activeDeck);
-        $activeDeck = removeBanned($activeDeck, "attack");
+        $activeDeck = removeBanned($bannedGroups, $activeDeck);
         $a = addRequired($requiredGroups, $activeDeck, $game);
         $activeDeck = $a[0];
         $game = $a[1];
