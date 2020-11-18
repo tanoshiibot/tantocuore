@@ -72,26 +72,38 @@ function removeBanned($cards, $condition) {
 
 
 
-function addRequired($condition, $cards, $deck) {
+function addRequired($conditions, $cards, $deck) {
     $requiredCards = [];
     foreach ($cards as $card) {
-        if (in_array($condition, $card["groups"])) {
-            array_push($requiredCards, $card);
+        foreach ($conditions as $condition) {
+            if (in_array($condition, $card["groups"])) {
+                array_push($requiredCards, $card);
+            }
         }
     }
-    $randCard = $requiredCards[rand(0, count($requiredCards) - 1)];
-    array_push($deck, $randCard);
-    unset($cards[array_search($randCard, $cards)]);
+    foreach ($conditions as $condition) {
+        $alreadyThere = false;
+        foreach($deck as $card) {
+            in_array($condition, $card["groups"]) ? $alreadyThere = true : false;
+        }
+        if (!$alreadyThere) {
+            $randCard = $requiredCards[rand(0, count($requiredCards) - 1)];
+            array_push($deck, $randCard);
+            array_splice($cards, $cards[array_search($randCard, $cards)]);
+        }
+    }
+
     return [$cards, $deck];
 }
 
 function addRandomCards($cards, $deck) {
-    for ($i = 0; $i < 10 - count($cards); $i++){
+    $alreadyThere = count($deck);
+    for ($i = 0; $i < (10 - $alreadyThere); $i++){
         $randCard = $cards[rand(0, count($cards) - 1)];
         array_push($deck, $randCard);
-        unset($cards[array_search($randCard, $cards)]);
+        array_splice($cards, $cards[array_search($randCard, $cards)]);
     }
-    return $cards;
+    return $deck;
 }
 
 
@@ -116,13 +128,14 @@ function addRandomCards($cards, $deck) {
         $activeDeck = addDefault($activeDeck, $defaultCard);
         $activeDeck = takeWaitress($activeDeck);
         $activeDeck = removeBanned($activeDeck, "attack");
-        foreach(array_values($requiredGroups) as $required) {
-            $a = addRequired($required, $activeDeck, $game);
-            $activeDeck = $a[0];
-            $game = $a[1];
-        }
+        $a = addRequired($requiredGroups, $activeDeck, $game);
+        $activeDeck = $a[0];
+        $game = $a[1];
         $game = addRandomCards($activeDeck, $game);
+        echo "<pre>";
         print_r($game);
+        echo "</pre>";
+
     ?>
 </body>
 </html>
