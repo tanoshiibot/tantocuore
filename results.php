@@ -89,7 +89,7 @@ function addRequired($conditions, $cards, $deck) {
         if (!$alreadyThere) {
             $randCard = $requiredCards[rand(0, count($requiredCards) - 1)];
             array_push($deck, $randCard);
-            array_splice($cards, array_search($randCard, $cards));
+            array_splice($cards, array_search($randCard, $cards), 1);
         }
     }
 
@@ -101,7 +101,7 @@ function addRandomCards($cards, $deck) {
     for ($i = 0; $i < (10 - $alreadyThere); $i++){
         $randCard = $cards[rand(0, count($cards) - 1)];
         array_push($deck, $randCard);
-        array_splice($cards, array_search($randCard, $cards));
+        array_splice($cards, array_search($randCard, $cards), 1);
     }
     return $deck;
 }
