@@ -21,7 +21,7 @@ $expansion0 = $games["Tanto Cuore"];
     <form action="results.php" method="post" class="d-flex flex-column justify-content-center container-xl">
 
         <div class="d-flex justify-content-between col-2 offset-10">
-            <label for="actions"> Require +2 Actions</label>
+            <label for="actions"> Require +2 Services</label>
             <input type="checkbox" id="actions" name="requireAction">
         </div>
         <div class="d-flex justify-content-between col-2 offset-10">
@@ -33,12 +33,12 @@ $expansion0 = $games["Tanto Cuore"];
             <input type="checkbox" id="buy" name="requireBuy">
         </div>
         <div class="d-flex justify-content-between col-2 offset-10">
-            <label for="allowAttacks"> Allow Attacks</label>
-            <input type="checkbox" id="allowAttacks" name="allowAttacks">
-        </div>
-        <div class="d-flex justify-content-between col-2 offset-10">
             <label for="requireAttack"> Require Attack</label>
             <input type="checkbox" id="requireAttack" name="requireAttack">
+        </div>
+        <div class="d-flex justify-content-between col-2 offset-10">
+            <label for="banAttacks"> Ban Attacks</label>
+            <input type="checkbox" id="banAttacks" name="banAttacks">
         </div>
 
         <input type="submit" value="submit" class="col-2 offset-10">

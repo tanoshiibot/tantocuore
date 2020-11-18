@@ -1,10 +1,10 @@
-let allowToggle = document.getElementById("allowAttacks").checked;
+let banToggle = document.getElementById("banAttacks").checked;
 
-allowToggle ? document.getElementById("requireAttack").removeAttribute("disabled") : document.getElementById("requireAttack").setAttributeNode(document.createAttribute("disabled"))
+!banToggle ? document.getElementById("requireAttack").removeAttribute("disabled") : document.getElementById("requireAttack").setAttributeNode(document.createAttribute("disabled"))
 
 
-document.getElementById("allowAttacks").addEventListener("click", () => {
-    allowToggle = document.getElementById("allowAttacks").checked;
-    allowToggle ? document.getElementById("requireAttack").removeAttribute("disabled") : document.getElementById("requireAttack").setAttributeNode(document.createAttribute("disabled"))
+document.getElementById("banAttacks").addEventListener("click", () => {
+    banToggle = document.getElementById("banAttacks").checked;
+    !banToggle ? document.getElementById("requireAttack").removeAttribute("disabled") : document.getElementById("requireAttack").setAttributeNode(document.createAttribute("disabled"))
 
 })
