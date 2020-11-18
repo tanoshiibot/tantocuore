@@ -129,10 +129,12 @@ function addRandomCards($cards, $deck) {
         $activeDeck = addExpansions($expansions, $activeExpansions);
         $activeDeck = addDefault($activeDeck, $defaultCard);
         $activeDeck = takeWaitress($activeDeck);
-        $activeDeck = removeBanned($bannedGroups, $activeDeck);
-        $a = addRequired($requiredGroups, $activeDeck, $game);
-        $activeDeck = $a[0];
-        $game = $a[1];
+        $bannedGroups ? $activeDeck = removeBanned($bannedGroups, $activeDeck) : false;
+        if ($requiredGroups) {
+            $a = addRequired($requiredGroups, $activeDeck, $game);
+            $activeDeck = $a[0];
+            $game = $a[1];
+        }
         $game = addRandomCards($activeDeck, $game);
         echo "<pre>";
         print_r($game);
