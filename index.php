@@ -22,23 +22,23 @@ $expansion0 = $games["Tanto Cuore"];
 
         <div class="d-flex justify-content-between col-2 offset-10">
             <label for="actions"> Require +2 Services</label>
-            <input type="checkbox" id="actions" name="requireAction">
+            <input type="checkbox" id="services" name="requireServices" value="+2 services">
         </div>
         <div class="d-flex justify-content-between col-2 offset-10">
             <label for="drawer"> Require Drawer</label>
-            <input type="checkbox" id="drawer" name="requireDrawer">
+            <input type="checkbox" id="drawer" name="requireDrawer" value="drawer">
         </div>
         <div class="d-flex justify-content-between col-2 offset-10">
             <label for="buy"> Require Buy</label>
-            <input type="checkbox" id="buy" name="requireBuy">
+            <input type="checkbox" id="buy" name="requireBuy" value="buy">
         </div>
         <div class="d-flex justify-content-between col-2 offset-10">
             <label for="requireAttack"> Require Attack</label>
-            <input type="checkbox" id="requireAttack" name="requireAttack">
+            <input type="checkbox" id="requireAttack" name="requireAttack" value="attack">
         </div>
         <div class="d-flex justify-content-between col-2 offset-10">
             <label for="banAttacks"> Ban Attacks</label>
-            <input type="checkbox" id="banAttacks" name="banAttacks">
+            <input type="checkbox" id="banAttacks" name="banAttacks" value="attack">
         </div>
 
         <input type="submit" value="submit" class="col-2 offset-10">

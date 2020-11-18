@@ -5,12 +5,18 @@ $expansions = json_decode($json, true);
 
 
 $activeExpansions = [];
-array_push($activeExpansions, $expansions["Tanto Cuore"]);
+array_push($activeExpansions, "Tanto Cuore");
 $activeDeck = [];
+
+$bannedGroups = array_filter($_POST, function($key) {return strpos($key, "ban") !== false;}, ARRAY_FILTER_USE_KEY);
+$requiredGroups = array_filter($_POST, function($key) {return strpos($key, "require") !== false;}, ARRAY_FILTER_USE_KEY);
+
 $game = [];
 
+//deck to shuffle
+
 $defaultCard = array(
-    "name" => undefined,
+    "name" => "noname",
     "type" => "Servante",
     "draw" => 0,
     "service" => 0,
@@ -21,11 +27,13 @@ $defaultCard = array(
     "groups" => []
 );
 
-function addExpansions ($activeExpansions) {
+function addExpansions ($expansions, $activeExpansions) {
     $deck = [];
-    foreach ($activeExpansions as $active) {
-        foreach ($active as $card) {
+    foreach (array_keys($expansions) as $expansion) {
+        if (in_array($expansion, $activeExpansions)) {
+            foreach ($expansions[$expansion] as $card) {
             array_push($deck, $card);
+            }
         }
     }
     return $deck;
@@ -44,25 +52,47 @@ function addDefault($cards, $defaultCard) {
         return $deck;
 }
 
+function lookType($card) {
+    return $card["type"] == "Servante";
+}
+
+function takeWaitress($deck) {
+    return array_filter($deck, "lookType");
+}
+
 function removeBanned($cards, $condition) {
     $deck = [];
     foreach ($cards as $card) {
-        in_array($condition, $card["groups"]) ? false :  array_push($bannedCards, $card);
+        !in_array($condition, $card["groups"]) ? array_push($deck, $card) : false ;
     }
+    return $deck;
 }
 
-function addRequired($cards, $condition) {
+//deck shuffled
+
+
+
+function addRequired($condition, $cards, $deck) {
     $requiredCards = [];
     foreach ($cards as $card) {
-        in_array($condition, $card["groups"]) ? array_push($requiredCards, $card) : false;
+        if (in_array($condition, $card["groups"])) {
+            array_push($requiredCards, $card);
+        }
     }
+    $randCard = $requiredCards[rand(0, count($requiredCards) - 1)];
+    array_push($deck, $randCard);
+    unset($cards[array_search($randCard, $cards)]);
+    return [$cards, $deck];
 }
 
-
-
-
-$bannedGroups = array_filter($_POST, function($key) {return strpos($key, "ban") !== false;}, ARRAY_FILTER_USE_KEY);
-$requiredGroups = array_filter($_POST, function($key) {return strpos($key, "require") !== false;}, ARRAY_FILTER_USE_KEY);
+function addRandomCards($cards, $deck) {
+    for ($i = 0; $i < 10 - count($cards); $i++){
+        $randCard = $cards[rand(0, count($cards) - 1)];
+        array_push($deck, $randCard);
+        unset($cards[array_search($randCard, $cards)]);
+    }
+    return $cards;
+}
 
 
 ?>
@@ -74,15 +104,25 @@ $requiredGroups = array_filter($_POST, function($key) {return strpos($key, "requ
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Tanto Cuore Randomizer</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
 </head>
 <body>
     <p>Not finished :(</p>
     <?php
         print_r($bannedGroups);
         print_r($requiredGroups);
-        $activeDeck = addExpansions($activeExpansions, $activeDeck);
+        $activeDeck = addExpansions($expansions, $activeExpansions);
         $activeDeck = addDefault($activeDeck, $defaultCard);
-        print_r($activeDeck);
+        $activeDeck = takeWaitress($activeDeck);
+        $activeDeck = removeBanned($activeDeck, "attack");
+        foreach(array_values($requiredGroups) as $required) {
+            $a = addRequired($required, $activeDeck, $game);
+            $activeDeck = $a[0];
+            $game = $a[1];
+        }
+        $game = addRandomCards($activeDeck, $game);
+        print_r($game);
     ?>
 </body>
 </html>

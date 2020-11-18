@@ -70,7 +70,8 @@
     {
         "name": "Eliza Rosewater",
         "love": 2,
-        "cost": 3
+        "cost": 3,
+        "groups": ["attack"]
     },
     {
         "name": "Kagari Ichinomiya",
@@ -130,7 +131,8 @@
         "service": 1,
         "love": 1,
         "buy": 1,
-        "cost": 6
+        "cost": 6,
+        "groups": ["attack"]
     },
     {
         "name": "Anise Greenaway",
